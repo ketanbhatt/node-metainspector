@@ -20,7 +20,7 @@ client.image              	# Most relevant image, if defined with og:image
 ## Usage
 
 ```javascript
-var MetaInspector = require('minimal-metainspector')
+var MetaInspector = require('minimal-metainspector');
 var client = new MetaInspector("http://www.google.com", {});
 
 client.on("fetch", function(){

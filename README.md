@@ -35,5 +35,5 @@ client.fetch();
 
 ```
 
-Copyright (c) 2009-2012 Ketan Bhatt, released under the MIT license
+Copyright (c) 2015 Ketan Bhatt, released under the MIT license
 

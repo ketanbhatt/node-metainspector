@@ -1,10 +1,10 @@
 {
-  "name": "node-metainspector",
-  "description": "Npm package for web scraping purposes. You give it an URL, and it lets you easily get its title, links, images, description, keywords, meta tags",
+  "name": "minimal-metainspector",
+  "description": "NPM package for scraping given URL and give its title, image and description as a JSON",
   "version": "1.0.0",
-  "homepage": "http://github.com/gabceb/node-metainspector",
-  "repository": "git://github.com/gabceb/node-metainspector.git",
-  "author": "Gabriel Cebrian <gabceb@gmail.com> (http://about.me/gabceb)",
+  "homepage": "http://github.com/ketanbhatt/node-metainspector",
+  "repository": "git://github.com/ketanbhatt/node-metainspector.git",
+  "author": "Ketan Bhatt <ketanbhatt1006@gmail.com> (http://ketanbhatt.github.io/)",
   "main": "./index.js",
   "dependencies": {
     "request": "2.20.0",
@@ -27,7 +27,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "http://github.com/gabceb/node-metainspector/raw/master/LICENSE"
+      "url": "http://github.com/ketanbhatt/node-metainspector/raw/master/LICENSE"
     }
   ]
 }

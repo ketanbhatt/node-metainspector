@@ -47,34 +47,6 @@ MetaInspector.prototype.getTitle = function()
 	return this;
 }
 
-MetaInspector.prototype.getOgTitle = function()
-{
-	debug("Parsing page Open Graph title");
-
-	if(this.ogTitle === undefined)
-	{
-		this.ogTitle = this.parsedDocument("meta[property='og:title']").attr("content");
-	}
-
-	return this;
-}
-
-MetaInspector.prototype.getLinks = function()
-{
-	debug("Parsing page links");
-
-	var _this = this;
-
-	if(!this.links)
-	{
-		this.links = this.parsedDocument('a').map(function(i ,elem){
-			return _this.parsedDocument(this).attr('href');
-		});
-	}
-
-	return this;
-}
-
 MetaInspector.prototype.getMetaDescription = function()
 {
 	debug("Parsing page description based on meta elements");
@@ -121,48 +93,6 @@ MetaInspector.prototype.getDescription = function()
 	return this;
 }
 
-MetaInspector.prototype.getKeywords = function()
-{
-	debug("Parsing page keywords from apropriate metatag");
-
-	if(!this.keywords)
-	{
-		var keywordsString = this.parsedDocument("meta[name='keywords']").attr("content");
-
-		if(keywordsString) {
-			this.keywords = keywordsString.split(',');
-		} else {
-			this.keywords = [];
-		}
-	}
-
-	return this;
-}
-
-MetaInspector.prototype.getAuthor = function()
-{
-	debug("Parsing page author from apropriate metatag");
-
-	if(!this.author)
-	{
-		this.author = this.parsedDocument("meta[name='author']").attr("content");
-	}
-
-	return this;
-}
-
-MetaInspector.prototype.getCharset = function()
-{
-	debug("Parsing page charset from apropriate metatag");
-
-	if(!this.charset)
-	{
-		this.charset = this.parsedDocument("meta[charset]").attr("charset");
-	}
-
-	return this;
-}
-
 MetaInspector.prototype.getImage = function()
 {
 	debug("Parsing page image based on the Open Graph image");
@@ -175,57 +105,12 @@ MetaInspector.prototype.getImage = function()
 	return this;
 }
 
-MetaInspector.prototype.getImages = function()
-{
-	debug("Parsing page body images");
-	var _this = this;
-
-	if(this.images === undefined)
-	{
-		this.images = this.parsedDocument('img').map(function(i ,elem){
-			var src = _this.parsedDocument(this).attr('src');
-			return _this.getAbsolutePath(src);
-		});
-	}
-
-	return this;
-}
-
-MetaInspector.prototype.getFeeds = function()
-{
-	debug("Parsing page feeds based on rss or atom feeds");
-
-	if(!this.feeds)
-	{
-		this.feeds = this.parseFeeds("rss") || this.parseFeeds("atom");
-	}
-
-	return this;
-}
-
-MetaInspector.prototype.parseFeeds = function(format)
-{
-	var _this = this;
-	var feeds = this.parsedDocument("link[type='application/" + format + "+xml']").map(function(i ,elem){
-		return _this.parsedDocument(this).attr('href');
-	});
-
-	return feeds;
-}
-
 MetaInspector.prototype.initAllProperties = function()
 {
 	// title of the page, as string
 	this.getTitle()
-			.getAuthor()
-			.getCharset()
-			.getKeywords()
-			.getLinks()
 			.getDescription()
-			.getImage()
-			.getImages()
-			.getFeeds()
-			.getOgTitle();
+			.getImage();
 }
 
 MetaInspector.prototype.getAbsolutePath = function(href){

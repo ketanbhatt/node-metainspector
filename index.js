@@ -105,12 +105,25 @@ MetaInspector.prototype.getImage = function()
 	return this;
 }
 
+MetaInspector.prototype.getKeywords = function()
+{
+	debug("Parsing page keywords based on meta elements");
+
+	if(!this.keywords)
+	{
+		this.keywords = this.parsedDocument("meta[name='keywords']").attr("content");
+	}
+
+	return this;
+}
+
 MetaInspector.prototype.initAllProperties = function()
 {
 	// title of the page, as string
 	this.getTitle()
 			.getDescription()
-			.getImage();
+			.getImage()
+			.getKeywords();
 }
 
 MetaInspector.prototype.getAbsolutePath = function(href){

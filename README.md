@@ -1,6 +1,4 @@
-## Node-Metainspector
-
-NPM package for scraping given URL and give its title, image and description as a JSON.
+### Node-Metainspector
 
 minimal-metainspector is forked and modified from the node-metainspector package by [gabceb](http://github.com/gabceb/node-metainspector)
 
@@ -14,6 +12,7 @@ client.rootUrl 			  	# Root url (scheme + host, i.e http://simple.com/)
 client.title              	# title of the page, as string
 client.description        	# returns the meta description, or the first long paragraph if no meta description is found
 client.image              	# Most relevant image, if defined with og:image
+client.keywords				# All keywords if defined in the Meta tag. 
 
 ```
 
@@ -32,6 +31,41 @@ client.on("error", function(err){
 });
 
 client.fetch();
+
+```
+
+## Generate Previews from Links (using Express)
+
+```javascript
+var express = require('express');
+var router = express.Router();
+
+var MetaInspector = require('minimal-metainspector');
+
+router.get('/', function (req, res) {
+
+	var client = new MetaInspector(req.query.url, {});
+ 
+	client.on("fetch", function(){
+		var details = {
+			"title": client.title,
+			"description": client.description,
+			"keywords": client.keywords,
+			"image": client.image
+		}
+		res.json(details);
+	});
+	 
+	client.on("error", function(err){
+	    console.log(error);
+	});
+	 
+	client.fetch();
+
+})
+
+
+module.exports = router;
 
 ```
 

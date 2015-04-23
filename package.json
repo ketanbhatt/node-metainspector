@@ -1,10 +1,11 @@
 {
   "name": "minimal-metainspector",
-  "description": "NPM package for scraping given URL and give its title, image and description as a JSON",
-  "version": "1.0.1",
+  "description": "NPM package for scraping given URL and give its title, image, description and keywords (if any). Ideal for generating preview from links.",
+  "version": "1.1.1",
   "homepage": "http://github.com/ketanbhatt/node-metainspector",
   "repository": "git://github.com/ketanbhatt/node-metainspector.git",
   "author": "Ketan Bhatt <ketanbhatt1006@gmail.com> (http://ketanbhatt.github.io/)",
+  "keywords": ["scraping", "preview generation", "parse", "url meta"],
   "main": "./index.js",
   "dependencies": {
     "request": "2.20.0",
